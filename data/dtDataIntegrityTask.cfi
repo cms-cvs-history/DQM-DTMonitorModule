@@ -4,5 +4,6 @@ service = DTDataIntegrityTask{
     untracked int32 timeBoxUpperBound = 10000
     untracked string outputFile = "DataIntegrity.root"
     untracked bool writeHisto = false
+    untracked bool enableMonitorDaemon = false
 }
     
