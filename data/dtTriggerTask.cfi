@@ -1,0 +1,13 @@
+module triggerMonitor = DTLocalTriggerTask {
+    untracked bool debug = true
+    untracked string outputFile = "DTLocalTriggerSources.root"
+    untracked string dcc_label = "dttpgprod"
+    untracked string ros_label = "dtunpacker"
+    untracked string seg_label = "dt4DSegments"
+    untracked bool process_dcc = true
+    untracked bool process_seg = true
+    untracked bool process_ros = true
+    untracked bool localrun = true
+    untracked bool writeHisto = false
+}
+

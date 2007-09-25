@@ -1,0 +1,20 @@
+module digiMonitor = DTDigiTask{
+
+    int32 defaultTtrig = 2700
+    int32 defaultTmax = 500
+    bool performPerWireT0Calibration = true
+    int32 inTimeHitsLowerBound = 500
+    int32 inTimeHitsUpperBound = 500
+
+    untracked int32 maxTDCHitsPerChamber = 30000
+    untracked bool debug = false
+    untracked bool writeHisto = false
+    untracked string outputFile = "DigiMonitor.root"
+    untracked bool readDB = true
+    untracked bool localrun = true
+    untracked int32 tdcRescale = 1
+    untracked int32 timeBoxGranularity = 4
+    untracked bool checkNoisyChannels = true
+    untracked bool enableMonitorDaemon = false
+}
+

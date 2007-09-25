@@ -1,0 +1,8 @@
+module dtResolutionAnalysisMonitor = DTResolutionAnalysisTask {
+    untracked bool debug = false
+    untracked string rootFileName = "DTResolutionAnalysisTask.root"
+    untracked bool writeHisto = false
+    string recHits4DLabel = "dt4DSegments"
+    string recHitLabel = "dt1DRecHits"
+    untracked bool MTCC = true
+}

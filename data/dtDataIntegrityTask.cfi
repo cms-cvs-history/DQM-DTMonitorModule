@@ -1,0 +1,8 @@
+service = DTDataIntegrityTask{
+    untracked bool debug = false
+    untracked int32 timeBoxLowerBound = 0
+    untracked int32 timeBoxUpperBound = 10000
+    untracked string outputFile = "DataIntegrity.root"
+    untracked bool writeHisto = false
+}
+    
