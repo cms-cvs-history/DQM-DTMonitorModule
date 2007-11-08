@@ -8,8 +8,6 @@ module digiMonitor = DTDigiTask{
 
     untracked int32 maxTDCHitsPerChamber = 30000
     untracked bool debug = false
-    untracked bool writeHisto = false
-    untracked string outputFile = "DigiMonitor.root"
     untracked bool readDB = true
     untracked bool localrun = true
     untracked int32 tdcRescale = 1

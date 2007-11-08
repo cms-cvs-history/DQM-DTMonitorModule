@@ -1,7 +1,5 @@
 module dtChamberEfficiencyMonitor = DTChamberEfficiencyTask {
     untracked bool debug = false
-    untracked string rootFileName = "DTChamberEfficiencyTask.root"
-    untracked bool writeHisto = false
     string recHits4DLabel = "dt4DSegments"
     int32 minHitsSegment = 5
     double minChi2NormSegment = 20.

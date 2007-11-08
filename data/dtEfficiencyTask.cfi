@@ -1,7 +1,5 @@
 module dtEfficiencyMonitor = DTEfficiencyTask {
     untracked bool debug = false
-    untracked string rootFileName = "DTEfficiencyTask.root"
-    untracked bool writeHisto = false
     string recHits4DLabel = "dt4DSegments"
     string recHitLabel = "dt1DRecHits"
 }

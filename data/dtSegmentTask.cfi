@@ -1,7 +1,5 @@
 module dtSegmentAnalysisMonitor = DTSegmentAnalysisTask {
     untracked bool debug = false
-    untracked string rootFileName = "DTSegmentAnalysis.root"
-    untracked bool writeHisto = false
     string recHits4DLabel = "dt4DSegments"
     untracked bool localrun = true
     untracked bool MTCC = true
