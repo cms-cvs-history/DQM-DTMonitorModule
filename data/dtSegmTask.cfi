@@ -1,7 +1,7 @@
  module dtSegmentsMonitor = DTSegmentsTask {
     untracked bool debug = false
     string recHits4DLabel = "dt4DSegments"
-    untracked bool checkNoisyChannels = true
+    untracked bool checkNoisyChannels = false
     bool OutputMEsInRootFile = false
     string OutputFileName="SegmentsMonitoring.root"
   }
