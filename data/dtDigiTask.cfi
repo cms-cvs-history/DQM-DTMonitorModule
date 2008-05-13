@@ -1,18 +1,25 @@
-module digiMonitor = DTDigiTask{
-
+module dtDigiMonitor = DTDigiTask{
+    # Value of the ttrig pedestal used when not reading from DB
     int32 defaultTtrig = 2700
-    int32 defaultTmax = 500
+    # Set to true to read the ttrig from the DB
+    untracked bool readDB = false
     bool performPerWireT0Calibration = true
+    # define the boundaries for in-time hits (ns)
+    int32 defaultTmax = 500
     int32 inTimeHitsLowerBound = 500
     int32 inTimeHitsUpperBound = 500
-
     untracked int32 maxTDCHitsPerChamber = 30000
-    untracked bool debug = false
-    untracked bool readDB = true
+    # if true access LTC digis
     untracked bool localrun = true
+    # set the max TDC counts for the time-box (in units of 6400)
     untracked int32 tdcRescale = 1
+    # bin size for the time boxes
     untracked int32 timeBoxGranularity = 4
+    # check the noisy flag in the DB and use it
     untracked bool checkNoisyChannels = true
-    untracked bool enableMonitorDaemon = false
+    # the # of luminosity blocks to reset the histos
+    untracked int32 ResetCycle = 10000
+    # switch on debug verbosity
+    untracked bool debug = false
 }
 
