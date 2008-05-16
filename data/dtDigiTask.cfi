@@ -19,7 +19,9 @@ module dtDigiMonitor = DTDigiTask{
     untracked bool checkNoisyChannels = true
     # the # of luminosity blocks to reset the histos
     untracked int32 ResetCycle = 10000
-    # switch on debug verbosity
+    # set static booking (all the detector)
+    untracked bool staticBooking = true
+   # switch on debug verbosity
     untracked bool debug = false
 }
 
