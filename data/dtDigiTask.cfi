@@ -1,4 +1,6 @@
 module dtDigiMonitor = DTDigiTask{
+    # the label to retrieve the DT digis
+    InputTag dtDigiLabel = dtunpacker
     # Value of the ttrig pedestal used when not reading from DB
     int32 defaultTtrig = 2700
     # Set to true to read the ttrig from the DB
