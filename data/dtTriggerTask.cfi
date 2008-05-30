@@ -3,7 +3,7 @@ module dtTriggerMonitor = DTLocalTriggerTask {
     #debug flag
     untracked bool debug = false
     # labels of DDU/DCC data and 4D segments
-    untracked string dcc_label = "muonDTTFDigis"
+    untracked string dcc_label = "dttfunpacker"
     untracked string ros_label = "dtunpacker"
     untracked string seg_label = "dt4DSegments"
     # if true enables DCC data analysis
