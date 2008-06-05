@@ -1,8 +1,8 @@
 /*
  * \file DTLocalTriggerTask.cc
  * 
- * $Date: 2008/05/30 13:39:55 $
- * $Revision: 1.24 $
+ * $Date: 2008/03/08 11:34:20 $
+ * $Revision: 1.21 $
  * \author M. Zanetti - INFN Padova
  *
 */
@@ -258,14 +258,14 @@ void DTLocalTriggerTask::bookHistos(const DTChamberId& dtCh, string folder, stri
 
   string histoType = histoTag.substr(4,histoTag.find("_",4)-4);
 
-  dbe->setCurrentFolder("DT/LocalTrigger/Wheel" + wheel.str() +
+  dbe->setCurrentFolder("DT/DTLocalTriggerTask/Wheel" + wheel.str() +
 			"/Sector" + sector.str() +
 			"/Station" + station.str() + "/" + folder);
 
   string histoName = histoTag + "_W" + wheel.str() + "_Sec" + sector.str() + "_St" + station.str();
     
   if (debug){
-    cout << "[DTLocalTriggerTask]: booking " << "DT/LocalTrigger/Wheel" << wheel.str()
+    cout << "[DTLocalTriggerTask]: booking " << "DT/DTLocalTriggerTask/Wheel" << wheel.str()
 	 << "/Sector" << sector.str()
 	 << "/Station"<< station.str() << "/" << folder << "/" << histoName << endl;
   }
@@ -286,7 +286,7 @@ void DTLocalTriggerTask::bookHistos(const DTChamberId& dtCh, string folder, stri
       
     if( histoType == "BXvsQual" ){
       (digiHistos[dtCh.rawId()])[histoTag] = 
-	dbe->book2D(histoName,"BX vs trigger quality",7,-0.5,6.5,rangeBX,minBX,maxBX);
+	dbe->book2D(histoName,"BX vs trigger quality",8,-0.5,7.5,rangeBX,minBX,maxBX);
       setQLabels((digiHistos[dtCh.rawId()])[histoTag],1);
       return ;
     }
@@ -298,13 +298,13 @@ void DTLocalTriggerTask::bookHistos(const DTChamberId& dtCh, string folder, stri
     }
     if( histoType == "QualvsPhirad" ){
       (digiHistos[dtCh.rawId()])[histoTag] = 
-	dbe->book2D(histoName,"Trigger quality vs local position",100,-500.,500.,7,-0.5,6.5);
+	dbe->book2D(histoName,"Trigger quality vs local position",100,-500.,500.,8,-0.5,7.5);
       setQLabels((digiHistos[dtCh.rawId()])[histoTag],2);
       return ;
     }
     if( histoType == "QualvsPhibend" ) { 
       (digiHistos[dtCh.rawId()])[histoTag] = 
-	dbe->book2D(histoName,"Trigger quality vs local direction",200,-40.,40.,7,-0.5,6.5);
+	dbe->book2D(histoName,"Trigger quality vs local direction",200,-40.,40.,8,-0.5,7.5);
       setQLabels((digiHistos[dtCh.rawId()])[histoTag],2);      
       return ;
     }
@@ -315,13 +315,13 @@ void DTLocalTriggerTask::bookHistos(const DTChamberId& dtCh, string folder, stri
 //     }
     if( histoType == "Flag1stvsQual" ) {
       (digiHistos[dtCh.rawId()])[histoTag] = 
-	dbe->book2D(histoName,"1st/2nd trig flag vs quality",7,-0.5,6.5,2,-0.5,1.5);
+	dbe->book2D(histoName,"1st/2nd trig flag vs quality",8,-0.5,7.5,2,-0.5,1.5);
       setQLabels((digiHistos[dtCh.rawId()])[histoTag],1);
       return ;
     }
     if( histoType == "QualDDUvsQualDCC" ){
       (digiHistos[dtCh.rawId()])[histoTag] = 
-	dbe->book2D(histoName,"DDU quality vs DCC quality",8,-1.5,6.5,8,-1.5,6.5);
+	dbe->book2D(histoName,"DDU quality vs DCC quality",9,-1.5,7.5,9,-1.5,7.5);
       setQLabels((digiHistos[dtCh.rawId()])[histoTag],1);
       setQLabels((digiHistos[dtCh.rawId()])[histoTag],2);      
       return ;
@@ -337,18 +337,17 @@ void DTLocalTriggerTask::bookHistos(const DTChamberId& dtCh, string folder, stri
     }
     if( histoType == "PositionvsQual" ) {
       (digiHistos[dtCh.rawId()])[histoTag] = 
-	dbe->book2D(histoName,"Theta trigger position vs quality",7,-0.5,6.5,7,-0.5,6.5);
+	dbe->book2D(histoName,"Theta trigger position vs quality",8,-0.5,7.5,6,-0.5,6.5);
       setQLabels((digiHistos[dtCh.rawId()])[histoTag],1);
       return ;
     }  
     if( histoType == "ThetaBXvsQual" ) {
       (digiHistos[dtCh.rawId()])[histoTag] = 
-	dbe->book2D(histoName,"BX vs trigger quality",7,-0.5,6.5,rangeBX,minBX,maxBX);
-      setQLabels((digiHistos[dtCh.rawId()])[histoTag],1);
+	dbe->book2D(histoName,"BX vs trigger quality",8,-0.5,7.5,rangeBX,minBX,maxBX);
     }
     if( histoType == "ThetaBestQual" ){
       (digiHistos[dtCh.rawId()])[histoTag] = 
-	dbe->book1D(histoName,"Trigger quality of best primitives (theta)",7,-0.5,6.5);
+	dbe->book1D(histoName,"Trigger quality of best primitives (theta)",8,-0.5,7.5);
       setQLabels((digiHistos[dtCh.rawId()])[histoTag],1);
       return ;
     }
@@ -391,7 +390,7 @@ void DTLocalTriggerTask::bookHistos(const DTChamberId& dtCh, string folder, stri
     }
     if( histoType == "HitstkvsQualtrig" ){ 
       (digiHistos[dtCh.rawId()])[histoTag] = 
-	dbe->book2D(histoName,"Segment hits (phi) vs trigger quality",7,-0.5,6.5,10,0.5,10.5);
+	dbe->book2D(histoName,"Segment hits (phi) vs trigger quality",8,-0.5,7.5,10,0.5,10.5);
       setQLabels((digiHistos[dtCh.rawId()])[histoTag],1);
       return ;
     }
@@ -601,7 +600,7 @@ void DTLocalTriggerTask::runDDUAnalysis(Handle<DTLocalTriggerCollection>& trigsD
 	bookHistos(id,"LocalTriggerPhi","DDU_BestQual"+trigsrc);
       innerME.find("DDU_BestQual"+trigsrc)->second->Fill(dduphcode_best[wh+3][st][sec]);  // CB Best Qual Trigger Phi view
     }
-    if (dduthcode_best[wh+3][st][sec]>0){
+    if (dduthcode_best[wh][st][sec]>0){
       if (innerME.find("DDU_ThetaBestQual"+trigsrc) == innerME.end())
 	bookHistos(id,"LocalTriggerTheta","DDU_ThetaBestQual"+trigsrc);
       innerME.find("DDU_ThetaBestQual"+trigsrc)->second->Fill(dduthcode_best[wh+3][st][sec]); // CB Best Qual Trigger Theta view

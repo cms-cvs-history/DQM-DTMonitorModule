@@ -1,4 +1,3 @@
-
 #ifndef DTSegmentAnalysisTask_H
 #define DTSegmentAnalysisTask_H
 
@@ -12,8 +11,8 @@
  *  All histos are produce per Chamber
  *
  *
- *  $Date: 2008/05/27 15:24:00 $
- *  $Revision: 1.6 $
+ *  $Date: 2007/11/28 10:31:33 $
+ *  $Revision: 1.4 $
  *  \author G. Cerminara - INFN Torino
  */
 
@@ -21,14 +20,12 @@
 #include "DataFormats/MuonDetId/interface/DTChamberId.h"
 #include "FWCore/ParameterSet/interface/ParameterSet.h"
 #include <FWCore/Framework/interface/EDAnalyzer.h>
-#include <FWCore/Framework/interface/ESHandle.h>
 
 #include <string>
 #include <map>
 #include <vector>
+//#include <pair>
 
-
-class DTGeometry;
 class DQMStore;
 class MonitorElement;
 
@@ -56,23 +53,26 @@ private:
   // The BE interface
   DQMStore* theDbe;
 
-  // Switch for detailed analysis
-  bool detailedAnalysis;
-
-   // Get the DT Geometry
-  edm::ESHandle<DTGeometry> dtGeom;
+  // Switch for verbosity
+  bool debug;
 
   // Lable of 4D segments in the event
   std::string theRecHits4DLabel;
 
-  // Get the map of noisy channels
-  bool checkNoisyChannels;
-
   edm::ParameterSet parameters;
- 
-  // book the histos
+  int DTTrig;
+  int CSCTrig;
+  int RBC1Trig;
+  int RBC2Trig;
+  int RPCTBTrig;
+
+  // Book a set of histograms for a give chamber
+  void bookHistos(int w, int sec);
   void bookHistos(DTChamberId chamberId);
-  // Fill a set of histograms for a given chamber 
+  // Fill a single histogram
+  void fillHistos(int nsegm, int w, int sec) ;
+  // Fill a set of histograms for a give chamber 
+  void fillHistos(DTChamberId chamberId, int nsegm);
   void fillHistos(DTChamberId chamberId,
 		  int nHits,
 		  float posX,
@@ -81,9 +81,9 @@ private:
 		  float theta,
 		  float chi2);
   
-  //  the histos
+  //   std::map<DTChamberId, MonitorElement*> numSegmentPerCh;
   std::map<DTChamberId, std::vector<MonitorElement*> > histosPerCh;
-  std::map< int, MonitorElement* > summaryHistos;
+  std::map<std::pair<int,int>, MonitorElement* > histosPerSec;
 
 };
 #endif
