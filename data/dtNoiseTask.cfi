@@ -1,1 +1,6 @@
-module dtNoiseMonitor = DTNoiseTask {}
+module dtNoiseMonitor = DTNoiseTask {
+    # switch for time box booking
+    untracked bool doTbHistos = true
+    # the name of the 4D rec hits collection
+    string recHits4DLabel = "dt4DSegments"
+}
