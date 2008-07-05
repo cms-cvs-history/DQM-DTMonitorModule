@@ -10,8 +10,9 @@
 <use name=Geometry/Records>
 <use name=Geometry/DTGeometry>
 <use name=DataFormats/DTRecHit>
+<use name=HLTrigger/HLTcore>
 <use name=boost>
-<use name=root>
+<use name=rootgraphics>
 
 <export>
  <lib name=DQMDTMonitorModule>
@@ -26,6 +27,7 @@
  <use name=Geometry/Records>
  <use name=Geometry/DTGeometry> 
  <use name=DataFormats/DTRecHit>
+ <use name=HLTrigger/HLTcore>
  <use name=boost>
- <use name=root>
+ <use name=rootgraphics>
 </export>
