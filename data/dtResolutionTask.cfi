@@ -5,5 +5,5 @@ module dtResolutionAnalysisMonitor = DTResolutionAnalysisTask {
     string recHits4DLabel = "dt4DSegments"
     string recHitLabel = "dt1DRecHits"
     # interval of lumi block after which we reset the histos
-    untracked int32 ResetCycle = 10000
+    untracked int32 ResetCycle = -1
 }
