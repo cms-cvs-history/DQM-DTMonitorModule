@@ -156,6 +156,7 @@ process.resolutionTest_step1 = cms.EDFilter("DTResolutionTest",
     debug = cms.untracked.bool(False),
     diagnosticPrescale = cms.untracked.int32(1),
     histoTag = cms.untracked.string('hResDist_STEP1'),
+    readFile = cms.untracked.bool(False),
     inputFile = cms.untracked.string('residuals.root')
 )
 
@@ -171,6 +172,7 @@ process.resolutionTest_step2 = cms.EDFilter("DTResolutionTest",
     debug = cms.untracked.bool(False),
     diagnosticPrescale = cms.untracked.int32(1),
     histoTag = cms.untracked.string('hResDist_STEP2'),
+    readFile = cms.untracked.bool(False),
     inputFile = cms.untracked.string('residuals.root')
 )
 
@@ -186,6 +188,7 @@ process.resolutionTest_step3 = cms.EDFilter("DTResolutionTest",
     debug = cms.untracked.bool(False),
     diagnosticPrescale = cms.untracked.int32(1),
     histoTag = cms.untracked.string('hResDist_STEP3'),
+    readFile = cms.untracked.bool(False),
     inputFile = cms.untracked.string('residuals.root')
 )
 
