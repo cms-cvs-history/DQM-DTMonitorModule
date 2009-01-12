@@ -1,9 +1,0 @@
-module dtEfficiencyMonitor = DTEfficiencyTask {
-    # switch for verbosity
-    untracked bool debug = false
-    # labels of 4D and 1D hits
-    string recHits4DLabel = "dt4DSegments"
-    string recHitLabel = "dt1DRecHits"
-    # interval of lumi block after which we reset the histos
-    untracked int32 ResetCycle = 10000
-}
