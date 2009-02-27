@@ -3,8 +3,8 @@
 /*
  *  See header file for a description of this class.
  *
- *  $Date: 2008/10/03 09:45:02 $
- *  $Revision: 1.6 $
+ *  $Date: 2008/01/22 18:46:59 $
+ *  $Revision: 1.4 $
  *  \author G. Mila - INFN Torino
  */
 
@@ -201,9 +201,7 @@ void DTAlbertoBenvenutiTask::bookHistos(const DTWireId dtWire) {
 	    if (debug) cout<<"[DTAlbertoBenvenutiTask]: histoName "<<histoName<<endl;
 
 	    if ( parameters.getUntrackedParameter<bool>("readDB", false) ) 
-              // ttrig and rms are TDC counts
-	      tTrigMap->get(dtWire.layerId().superlayerId(), tTrig, tTrigRMS, kFactor,
-                            DTTimeUnits::counts); 
+	      tTrigMap->slTtrig(dtWire.layerId().superlayerId(), tTrig, tTrigRMS); 
 	    else tTrig = parameters.getParameter<int>("defaultTtrig");
   
 	    string histoTitle = histoName + " (TDC Counts)";
@@ -286,7 +284,7 @@ void DTAlbertoBenvenutiTask::analyze(const edm::Event& e, const edm::EventSetup&
 
       if (parameters.getParameter<bool>("performPerWireT0Calibration")) {
 	const DTWireId dtWireId(((*dtLayerId_It).first), (*digiIt).wire());
-	t0Map->get(dtWireId, t0, t0RMS, DTTimeUnits::counts) ;
+	t0Map->cellT0(dtWireId, t0, t0RMS) ;
 	tdcTime += int(round(t0));
       }
        

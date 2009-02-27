@@ -1,0 +1,10 @@
+service = DTDataIntegrityTask{
+    untracked bool debug = false
+    untracked int32 timeBoxLowerBound = 0
+    untracked int32 timeBoxUpperBound = 10000
+    untracked bool doTimeHisto = true
+    untracked int32 resetCycle = 1000
+    untracked int32 TBhistoGranularity = 1
+    untracked bool getSCInfo = true
+}
+    
