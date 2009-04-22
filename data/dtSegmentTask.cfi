@@ -1,0 +1,8 @@
+module dtSegmentAnalysisMonitor = DTSegmentAnalysisTask {
+    # switch for detailed analysis
+    untracked bool detailedAnalysis = false
+    # label of 4D segments
+    string recHits4DLabel = "dt4DSegments"
+    # skip segments with noisy cells (reads from DB)
+    untracked bool checkNoisyChannels = false
+}
