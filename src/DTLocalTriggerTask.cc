@@ -1,13 +1,13 @@
 /*
  * \file DTLocalTriggerTask.cc
  * 
- * $Date: 2008/11/18 17:45:31 $
- * $Revision: 1.31 $
+ * $Date: 2008/11/05 11:37:55 $
+ * $Revision: 1.30 $
  * \author M. Zanetti - INFN Padova
  *
 */
 
-#include "DQM/DTMonitorModule/src/DTLocalTriggerTask.h"
+#include "DQM/DTMonitorModule/interface/DTLocalTriggerTask.h"
 
 // Framework
 #include "FWCore/Framework/interface/EventSetup.h"
@@ -45,12 +45,10 @@ DTLocalTriggerTask::DTLocalTriggerTask(const edm::ParameterSet& ps){
   doDCCTheta       = ps.getUntrackedParameter<bool>("enableDCCTheta", false);
   
   if (tpMode) {
-    baseFolderDCC = "DT/11-LocalTriggerTP-DCC/";
-    baseFolderDDU = "DT/12-LocalTriggerTP-DDU/";
+    baseFolder = "DT/11-LocalTriggerTP/";
   }
   else {
-    baseFolderDCC = "DT/03-LocalTrigger-DCC/";
-    baseFolderDDU = "DT/04-LocalTrigger-DDU/";
+    baseFolder = "DT/03-LocalTrigger/";
   }
 
   parameters = ps;
@@ -216,8 +214,7 @@ void DTLocalTriggerTask::beginLuminosityBlock(const LuminosityBlock& lumiSeg, co
 void DTLocalTriggerTask::endJob(){
 
   LogVerbatim("DTDQM|DTMonitorModule|DTLocalTriggerTask") << "[DTLocalTriggerTask]: analyzed " << nevents << " events" << endl;
-  if (parameters.getUntrackedParameter<bool>("process_dcc", true)) dbe->rmdir(topFolder(0)); //DDU folder
-  if (parameters.getUntrackedParameter<bool>("process_ros", true)) dbe->rmdir(topFolder(1)); //DCC folder
+  dbe->rmdir(topFolder());
 
 }
 
@@ -282,8 +279,8 @@ void DTLocalTriggerTask::analyze(const edm::Event& e, const edm::EventSetup& c){
 
 void DTLocalTriggerTask::bookCMSHistos(string histoTag) {
 
-  bool isDCC = histoTag.substr(0,3) == "DCC";
-  dbe->setCurrentFolder(topFolder(isDCC));
+  string hwFolder = histoTag.substr(0,3) == "DCC" ? "DCC/" : "";
+  dbe->setCurrentFolder(topFolder()+hwFolder);
   if (histoTag == "DCC_ErrorsChamberID") {
     dcc_IDDataErrorPlot = dbe->book1D(histoTag.c_str(),"DCC Data ID Error",5,-2,3);
     dcc_IDDataErrorPlot->setAxisTitle("wheel",1);
@@ -306,15 +303,15 @@ void DTLocalTriggerTask::bookHistos(const DTChamberId& dtCh, string folder, stri
   int  rangeBX=0;
 
   string histoType = histoTag.substr(4,histoTag.find("_",4)-4);
-  bool isDCC = histoTag.substr(0,3) == "DCC"; 
+  string hwFolder = histoTag.substr(0,3) == "DCC" ? "DCC/" : ""; 
 
-  dbe->setCurrentFolder(topFolder(isDCC) + "Wheel" + wheel.str() +
+  dbe->setCurrentFolder(topFolder() + hwFolder + "Wheel" + wheel.str() +
 			"/Sector" + sector.str() +
 			"/Station" + station.str() + "/" + folder);
 
   string histoName = histoTag + "_W" + wheel.str() + "_Sec" + sector.str() + "_St" + station.str();
     
-  LogTrace("DTDQM|DTMonitorModule|DTLocalTriggerTask") << "[DTLocalTriggerTask]: booking " << topFolder(isDCC) << "Wheel" << wheel.str()
+  LogTrace("DTDQM|DTMonitorModule|DTLocalTriggerTask") << "[DTLocalTriggerTask]: booking " << topFolder() << hwFolder << "Wheel" << wheel.str()
 						       << "/Sector" << sector.str()
 						       << "/Station"<< station.str() << "/" << folder << "/" << histoName << endl;
     
