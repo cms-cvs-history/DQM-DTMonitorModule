@@ -47,7 +47,9 @@
 #include "TrackingTools/TrajectoryState/interface/FreeTrajectoryState.h"
 #include "DataFormats/Common/interface/RefToBase.h" 
 
-#include "TrackingTools/DetLayers/interface/NavigationSetter.h"
+
+
+
 
 #include <cmath>
 
@@ -171,8 +173,6 @@ void DTChamberEfficiency::analyze(const Event & event,
 
   theService->update(eventSetup);
   theMeasurementExtractor->setEvent(event); 
-  // set navigation school
-  NavigationSetter setter(*theService->muonNavigationSchool());
 
   //Read tracks from event
   Handle<reco::TrackCollection> tracks;
@@ -326,10 +326,7 @@ if(theNavigationType == "Standard"){
    detLayers = initialLayer->compatibleLayers(fts,propDir);
     // I have to fit by hand the first layer until the seedTSOS is defined on the first rechit layer
    // In fact the first layer is not returned by initialLayer->compatibleLayers.
-
-   // Not accounting for the layer where the seed resides, causing bias.
-   // detLayers.insert(detLayers.begin(),initialLayer);
-
+   detLayers.insert(detLayers.begin(),initialLayer);
    }
  else if (theNavigationType == "Direct"){
 
